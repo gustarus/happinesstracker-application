@@ -27,7 +27,7 @@ class Tumbler extends Component {
       ? componentStyles.even : componentStyles.odd;
 
     return (
-      <View style={[styles.content, componentStyles.container, runtimeStyle, this.props.style]}>
+      <View style={[styles.contentHorizontal, componentStyles.container, runtimeStyle, this.props.style]}>
         <View style={componentStyles.content}>
           <View style={componentStyles.label}>
             <Text style={componentStyles.labelText}>{label}</Text>

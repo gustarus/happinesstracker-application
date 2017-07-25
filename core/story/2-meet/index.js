@@ -19,7 +19,7 @@ class Scene extends Component {
   render() {
     return (
       <View style={Object.assign({}, styles.scene, styles.middleVertical)}>
-        <View style={styles.content}>
+        <View style={styles.contentHorizontal}>
           <Button
             text="Let's meet with the app"
             style={[styles.buttonDefault, sceneStyles.button]}

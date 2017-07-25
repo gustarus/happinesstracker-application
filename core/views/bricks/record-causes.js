@@ -17,7 +17,7 @@ class Brick extends Component {
   render() {
     return (
       <View>
-        <View style={styles.content}>
+        <View style={styles.contentHorizontal}>
           <View style={brickStyles.note}>
             <TextInput
               style={brickStyles.textarea}

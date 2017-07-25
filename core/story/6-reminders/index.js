@@ -62,7 +62,7 @@ class Scene extends Component {
           titleStyle={sceneOptions.headerTitleStyle}/>
         <ScrollView style={sceneStyles.scroll}>
           <View style={sceneStyles.firstBrick}>
-            <Text style={[styles.content, styles.textMedium]}>
+            <Text style={[styles.contentHorizontal, styles.textMedium]}>
               You can setup reminders.
               At the specified time, the application will remind you that you need to make a record.
             </Text>
@@ -73,7 +73,7 @@ class Scene extends Component {
               onChange={this.onEnabledChange.bind(this)}/>
           </View>
           <View style={[sceneStyles.brick, runtimeStyle]}>
-            <Text style={[styles.content, styles.textMedium]}>
+            <Text style={[styles.contentHorizontal, styles.textMedium]}>
               We can notify you within one hour.
               Example: you turned on the notification at 12:00.
               If you made a record at 11:31 or at 12:29, the notification scheduled at 12:00 will not come to you.
@@ -86,7 +86,7 @@ class Scene extends Component {
               onChange={this.onIntelligenceChange.bind(this)}/>
           </View>
           <View style={[sceneStyles.brick, runtimeStyle]}>
-            <Text style={[styles.content, styles.textMedium]}>When you want to receive push reminders?</Text>
+            <Text style={[styles.contentHorizontal, styles.textMedium]}>When you want to receive push reminders?</Text>
             <View style={sceneStyles.reminders}>
               {reminders.map((reminder, index) => (
                 <Tumbler

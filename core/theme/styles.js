@@ -45,7 +45,17 @@ export default {
 
   content: {
     width: '100%',
+    padding: 15
+  },
+
+  contentHorizontal: {
+    width: '100%',
     paddingHorizontal: 15
+  },
+
+  contentVertical: {
+    width: '100%',
+    paddingVertical: 15
   },
 
   header: {

@@ -43,7 +43,8 @@ const componentStyles = {
     shadowOffset: {
       height: StyleSheet.hairlineWidth
     },
-    elevation: 4
+    elevation: 4,
+    zIndex: 9999
   },
 
   header: {

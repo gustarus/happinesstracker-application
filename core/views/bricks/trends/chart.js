@@ -117,7 +117,7 @@ class Chart extends Component {
       <View style={[componentStyles.chart, this.props.style]}>
         <Text style={componentStyles.title}>{this.props.title}</Text>
 
-        <Svg width={svgWidth} height={svgHeight} style={[styles.content, componentStyles.content]}>
+        <Svg width={svgWidth} height={svgHeight} style={[styles.contentHorizontal, componentStyles.content]}>
           {steps}
           <Line
             x1='0'
@@ -170,8 +170,7 @@ const componentStyles = {
 
   date: {
     height: 15,
-    fontSize: 10,
-    backgroundColor: 'blue'
+    fontSize: 10
   },
 
   message: {

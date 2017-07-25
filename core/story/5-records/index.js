@@ -58,7 +58,7 @@ class Scene extends Component {
     if (!records.length) {
       return (
         <View style={styles.middle}>
-          <View style={styles.content}>
+          <View style={styles.contentHorizontal}>
             <Text style={[styles.textMedium, styles.textCenter]}>There is no data yet</Text>
             <Text style={[styles.textMedium, styles.textCenter]}>Make your first record</Text>
           </View>
