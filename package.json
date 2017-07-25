@@ -3,15 +3,21 @@
   "version": "0.0.0",
   "private": false,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "start:clean": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
+    "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
     "ios": "react-native run-ios --simulator='iPhone 5s'",
     "android": "react-native run-android",
+    
     "log:ios": "react-native log-ios",
     "log:android": "react-native log-android",
+    
     "release:ios": "",
     "release:android": "cd android && ./gradlew assembleRelease && cd .. && open ./android/app/build/outputs/apk/",
-    "env": "osascript -e 'tell application \"Terminal\" to activate' -e 'tell application \"System Events\" to tell process \"Terminal\" to keystroke \"t\" using command down' -e 'tell application \"Terminal\" to do script \"nvm use && yarn start\" in selected tab of the front window' && osascript -e 'tell application \"Terminal\" to activate' -e 'tell application \"System Events\" to tell process \"Terminal\" to keystroke \"t\" using command down' -e 'tell application \"Terminal\" to do script \"nvm use && yarn ios\" in selected tab of the front window' && osascript -e 'tell application \"Terminal\" to activate' -e 'tell application \"System Events\" to tell process \"Terminal\" to keystroke \"t\" using command down' -e 'tell application \"Terminal\" to do script \"nvm use && yarn log:ios\" in selected tab of the front window'"
+    
+    "ios:iphone:5": "react-native run-ios --simulator='iPhone 5'",
+    "ios:iphone:6": "react-native run-ios --simulator='iPhone 6'",
+    "ios:iphone:6plus": "react-native run-ios --simulator='iPhone 6 Plus'",
+    "ios:ipad:air": "react-native run-ios --simulator='iPad Air 2",
+    "ios:ipad:pro": "react-native run-ios --simulator='iPad Pro (12.9-inch)"
   },
   "jest": {
     "preset": "jest-expo"
