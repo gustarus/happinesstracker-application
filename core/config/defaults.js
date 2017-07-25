@@ -24,14 +24,13 @@ import Storage from '@core/components/storage';
 // notification messages variants
 const messages = ['Let\'s make a record!'];
 
-// debug section
-const debug = typeof __DEV__ !== 'undefined' && __DEV__;
-const debugClean = false;
-
 export default {
 
-  debug: debug,
-  debugClean: debug ? debugClean : false,
+  debug: {
+    enabled: typeof __DEV__ !== 'undefined' && __DEV__,
+    resetOnLaunch: false,
+    resetWithFixtures: false
+  },
 
   home: {
     screen: SplashScene
@@ -114,7 +113,7 @@ export default {
         stack[key] = true;
         return stack;
       }, {});
-      
+
       this.storage.set({learned}).save();
     },
 
@@ -154,7 +153,7 @@ export default {
       timestamp.seconds(0);
 
       let threshold = timestamp.clone();
-      
+
       if (this.storage.get('reminders.intelligence')) {
         timestamp.add(30, 'minutes');
         threshold.subtract(30, 'minutes');
@@ -167,7 +166,7 @@ export default {
 
       const message = messages[Math.floor((Math.random() * messages.length))];
       const data = this.getReminderData(reminder);
-      
+
       this.notification.local(timestamp, message, data, 1, 'day');
     },
 
@@ -188,7 +187,7 @@ export default {
 
     rescheduleReminder(reminder) {
       this.cancelReminder(reminder);
-      this.scheduleReminder(reminder); 
+      this.scheduleReminder(reminder);
     },
 
     rescheduleReminders(reminders) {

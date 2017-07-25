@@ -5,21 +5,14 @@ const _ = require('lodash');
 /**
  * Core application model.
  * @class application
- * @property events {Object} Registered application events.
- * @property components {Object} Registered application components.
- * @property modules {Object} Registered application modules.
  * @property settings {Object} Application configuration.
- * @property stages {Object} Different stages for boot method. Stage - page loading phase. Nex stages are allowed: ready, load. Every stage contains events, components and modules.
  */
 export default class Application {
 
   constructor() {
-    this.components = {};
-    this.modules = {};
-
-    this.settings = {
-      components: {},
-      modules: {}
+    this.configurators = {
+      debug: this.configureDebug.bind(this),
+      components: this.configureComponents.bind(this)
     };
   }
 
@@ -29,19 +22,55 @@ export default class Application {
    * @returns {Application}
    */
   configure(settings) {
+    this.settings = this.settings || {};
     _.each(settings, (value, key) => {
-      if (key === 'components' || key === 'modules') { // configure events, components or modules
-        _.each(value, (childValue, childKey) => {
-          // get item configuration
-          let childSource = this.settings[key][childKey] || {};
-          this.settings[key][childKey] = _.merge(childSource, childValue);
-        });
-      } else { // configure other property
+      if (this.configurators[key]) {
+        this.configurators[key](key, value);
+      } else {
         this.settings[key] = value;
       }
     });
 
     return this;
+  }
+
+  /**
+   * Configure debug mode.
+   * We have to disable all debug modes if debug mode is disabled.
+   * @param value
+   */
+  configureDebug(key, value) {
+    // set default data structure to the settings
+    this.settings[key] = this.settings[key] || {};
+
+    // merge with the default value
+    const enabled = typeof value.enabled === 'boolean'
+      ? value.enabled : (this.settings[key]['enabled'] || false);
+    this.settings[key]['enabled'] = enabled;
+
+    // override values based on global debug flag
+    const values = _.omit(value, ['enabled']);
+    _.each(values, (childValue, childKey) => {
+      this.settings[key][childKey] = enabled
+        ? childValue : false;
+    });
+  }
+
+  /**
+   * Configure application components.
+   * @param key
+   * @param value
+   */
+  configureComponents(key, value) {
+    // set default data structure to the app and to the settings
+    this.settings[key] = this.settings[key] || {};
+    this[key] = this[key] || {};
+
+    _.each(value, (childValue, childKey) => {
+      // get item configuration
+      let childSource = this.settings[key][childKey] || {};
+      this.settings[key][childKey] = _.merge(childSource, childValue);
+    });
   }
 
   /**

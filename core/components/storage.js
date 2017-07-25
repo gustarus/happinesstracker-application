@@ -2,8 +2,9 @@
 
 import _ from 'lodash';
 import {AsyncStorage} from 'react-native';
-
+import fixtures from '@core/fixtures';
 import {Component} from './base';
+import {app} from '@core/instances';
 
 function mergeAttributesDeep(to, from) {
   if (!from) {
@@ -84,7 +85,7 @@ export default class Storage extends Component {
 
   get(name, placeholder = null) {
     const link = linkDeepAttribute(this.attributes, name);
-    return link && typeof link.parent[link.property] !== 'undefined' 
+    return link && typeof link.parent[link.property] !== 'undefined'
       ? link.parent[link.property] : placeholder;
   }
 
@@ -99,8 +100,12 @@ export default class Storage extends Component {
     });
   }
 
-  clean() {
-    return AsyncStorage.removeItem(this.key)
-      .then(() => this.set(this.defaults));
+  reset(records = {}) {
+    return AsyncStorage.removeItem(this.key).then(() => {
+      this.set(this.defaults);
+      for (let i in records) {
+        this.set(`records.${i}`, fixtures.records[i]);
+      }
+    });
   }
 }

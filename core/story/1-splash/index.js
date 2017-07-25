@@ -2,11 +2,12 @@
 
 import React, {Component} from 'react';
 import {View, Modal, PushNotificationIOS, AppState} from 'react-native';
-import SplashScreen from 'react-native-splash-screen'
-import {NavigationActions, DrawerNavigator, StackNavigator} from 'react-navigation'
+import SplashScreen from 'react-native-splash-screen';
+import {NavigationActions, DrawerNavigator, StackNavigator} from 'react-navigation';
 import {app} from '@core/instances';
 import {styles} from '@core/theme';
 import moment from 'moment';
+import fixtures from '@core/fixtures';
 
 class Scene extends Component {
 
@@ -16,13 +17,20 @@ class Scene extends Component {
   };
 
   componentDidMount() {
-    const chain = app.settings.debug && app.settings.debugClean
-      ? app.storage.clean(): app.storage.fetch();
-    const final = () => SplashScreen.hide();
-
     this.onAppStateChangeBind = this.onAppStateChange.bind(this);
     AppState.addEventListener('change', this.onAppStateChangeBind);
-    
+
+    const chain = (() => {
+      if (app.settings.debug.resetOnLaunch) {
+        const records = app.settings.debug.resetWithFixtures
+          ? fixtures.records : {};
+        return app.storage.reset(records);
+      }
+
+      return app.storage.fetch();
+    })();
+
+    const final = () => SplashScreen.hide();
     chain.then(() => {
       this.setState({loaded: true});
     }).then(() => {
@@ -35,11 +43,11 @@ class Scene extends Component {
     }).then(() => {
       app.notification.clean();
       app.notification.badge(0);
-    }).then(final).catch(final);    
+    }).then(final).catch(final);
   }
 
   componentWillUnmount() {
-      AppState.removeEventListener('change', this.onAppStateChangeBind);
+    AppState.removeEventListener('change', this.onAppStateChangeBind);
   }
 
   render() {
@@ -92,10 +100,10 @@ class Scene extends Component {
     if (isAppInactive && isRecordRequested) {
       const navigation = this.drawer._navigation;
       const {routes, index} = navigation.state;
-      
+
       const root = routes[index];
       const action = root.routes[root.index];
-      
+
       const {routeName, params} = action;
       const isAlreadyActive = routeName === 'home' && params && params.isRecordModalVisible === true;
       if (!isAlreadyActive) {
