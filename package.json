@@ -1,0 +1,51 @@
+{
+  "name": "happinesstracker",
+  "version": "0.1.0",
+  "private": false,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start:clean": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
+    "ios": "react-native run-ios --simulator='iPhone 5s'",
+    "android": "react-native run-android",
+    "log:ios": "react-native log-ios",
+    "log:android": "react-native log-android",
+    "release:ios": "",
+    "release:android": "cd android && ./gradlew assembleRelease && cd .. && open ./android/app/build/outputs/apk/",
+    "env": "osascript -e 'tell application \"Terminal\" to activate' -e 'tell application \"System Events\" to tell process \"Terminal\" to keystroke \"t\" using command down' -e 'tell application \"Terminal\" to do script \"nvm use && yarn start\" in selected tab of the front window' && osascript -e 'tell application \"Terminal\" to activate' -e 'tell application \"System Events\" to tell process \"Terminal\" to keystroke \"t\" using command down' -e 'tell application \"Terminal\" to do script \"nvm use && yarn ios\" in selected tab of the front window' && osascript -e 'tell application \"Terminal\" to activate' -e 'tell application \"System Events\" to tell process \"Terminal\" to keystroke \"t\" using command down' -e 'tell application \"Terminal\" to do script \"nvm use && yarn log:ios\" in selected tab of the front window'"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "babel": "6.23.0",
+    "babel-plugin-module-alias": "1.6.0",
+    "child_process": "1.0.2",
+    "lodash": "4.17.4",
+    "moment": "2.18.1",
+    "react": "16.0.0-alpha.12",
+    "react-native": "0.45.1",
+    "react-native-elements": "0.15.0",
+    "react-native-splash-screen": "2.1.0",
+    "react-native-svg": "5.2.0",
+    "react-native-swipeout": "git://github.com/gustarus/react-native-swipeout.git#027c2afddeee6e0fa7f9063f7e5bf90b7de336af",
+    "react-native-swiper": "1.5.4",
+    "react-native-vector-icons": "4.2.0",
+    "react-navigation": "1.0.0-beta.11"
+  },
+  "babel": {
+    "presets": [
+      "react-native"
+    ],
+    "plugins": [
+      [
+        "module-alias",
+        [
+          {
+            "src": "./core",
+            "expose": "@core"
+          }
+        ]
+      ]
+    ]
+  }
+}
