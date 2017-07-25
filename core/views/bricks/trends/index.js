@@ -22,13 +22,12 @@ const chartHeightThreshold = 280;
 class Brick extends Component {
 
   state = {
-    chartMode: 'default',
     criteriaKey: 'happy',
     periodKey: 'month'
   };
 
   render() {
-    const {chartMode, periodKey, criteriaKey} = this.state;
+    const {periodKey, criteriaKey} = this.state;
     const {records} = this.props;
 
     // TODO use cache for getter or move it to the default props definition
@@ -48,10 +47,9 @@ class Brick extends Component {
 
     return (
       <View style={[styles.scene, brickStyles.container]}>
-        <View style={brickStyles.chart} onLayout={this.onLayoutChange.bind(this)}>
+        <View style={brickStyles.chart}>
           <View style={styles.middle}>
             <Chart
-              mode={chartMode}
               title={title}
               groups={data}
               width={width}
@@ -87,13 +85,6 @@ class Brick extends Component {
         </View>
       </View>
     );
-  }
-
-  onLayoutChange(event) {
-    const {height} = event.nativeEvent.layout;
-    if (height <= chartHeightThreshold) {
-      this.setState({chartMode: 'compact'});
-    }
   }
 
   onCriteriaPick({key}) {
