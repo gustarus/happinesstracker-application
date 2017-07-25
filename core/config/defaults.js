@@ -26,7 +26,7 @@ const messages = ['Let\'s make a record!'];
 
 // debug section
 const debug = typeof __DEV__ !== 'undefined' && __DEV__;
-const debugClean = true;
+const debugClean = false;
 
 export default {
 

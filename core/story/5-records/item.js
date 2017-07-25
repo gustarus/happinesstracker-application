@@ -40,7 +40,7 @@ class Item extends Component {
 
     return (
       <View style={componentStyles.record}>
-        <Swipeout right={buttons} style={runtimeStyle}>
+        <Swipeout right={buttons} style={runtimeStyle} buttonWidth={componentStyles.button.width}>
           <View style={componentStyles.content}>
             <View style={componentStyles.timestamp}>
               <View style={componentStyles.recordTimestampContent}>
@@ -168,7 +168,8 @@ const componentStyles = {
     fontSize: 34,
     color: '#ffffff',
     textAlign: 'center',
-    lineHeight: 60
+    lineHeight: 60,
+    textAlign: 'center'
   },
 
   buttonRemove: {
