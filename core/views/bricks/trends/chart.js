@@ -23,15 +23,29 @@ import Svg,{
   Stop
 } from 'react-native-svg';
 
+function resolveModeStyles(mode) {
+  const runtimeStyles = mode == 'compact'
+    ? componentCompactStyle : componentDefaultStyle;
+
+  let resultStyles = {};
+  for (let i in componentStyles) {
+    resultStyles[i] = Object.assign({}, componentStyles[i], runtimeStyles[i]);
+  }
+
+  return resultStyles;
+}
+
 // TODO refactoring needed: optimize code and make it shorter
 class Chart extends Component {
 
   render() {
-    const {groups, width, height} = this.props;
-    const {paddingTop, paddingRight, paddingBottom, paddingLeft} = componentStyles.canvas;
+    const {mode, groups, width, height} = this.props;
+    const runtimeStyles = resolveModeStyles(mode);
+
+    const {paddingTop, paddingRight, paddingBottom, paddingLeft} = runtimeStyles.canvas;
 
     const svgWidth = width;
-    const svgHeight = height - componentStyles.title.height - componentStyles.content.marginTop;
+    const svgHeight = height - runtimeStyles.title.height - runtimeStyles.chart.marginTop;
 
     const contentWidth = svgWidth - paddingRight - paddingLeft;
     const contentHeight = svgHeight - paddingTop - paddingBottom;
@@ -67,7 +81,7 @@ class Chart extends Component {
       if (i === 0 || i === groups.length - 1) {
         dates.push(
           <SvgText key={`date-${i}`}
-                   x={x} y={svgHeight - componentStyles.date.height} fontSize={componentStyles.date.fontSize}
+                   x={x} y={svgHeight - runtimeStyles.date.height} fontSize={runtimeStyles.date.fontSize}
                    textAnchor='middle'>{moment(group.timestamp).format('MMM D').toUpperCase()}</SvgText>
         );
       }
@@ -104,9 +118,9 @@ class Chart extends Component {
     if(!points.length) {
       message= (
         <SvgText x={contentWidth / 2 + paddingLeft}
-                 y={contentHeight / 2 + paddingTop - componentStyles.message.height}
-                 fontSize={componentStyles.message.fontSize}
-                 fontFamily={componentStyles.message.fontFamily}
+                 y={contentHeight / 2 + paddingTop - runtimeStyles.message.height}
+                 fontSize={runtimeStyles.message.fontSize}
+                 fontFamily={runtimeStyles.message.fontFamily}
                  textAnchor='middle'>
           There is no data yet. Make your first record
         </SvgText>
@@ -114,10 +128,9 @@ class Chart extends Component {
     }
 
     return (
-      <View style={[componentStyles.chart, this.props.style]}>
-        <Text style={componentStyles.title}>{this.props.title}</Text>
-
-        <Svg width={svgWidth} height={svgHeight} style={[styles.contentHorizontal, componentStyles.content]}>
+      <View style={[runtimeStyles.container, this.props.style]}>
+        <Text style={runtimeStyles.title}>{this.props.title}</Text>
+        <Svg width={svgWidth} height={svgHeight} style={[styles.contentHorizontal, runtimeStyles.chart]}>
           {steps}
           <Line
             x1='0'
@@ -164,7 +177,7 @@ const componentStyles = {
     textAlign: 'center'
   },
 
-  content: {
+  chart: {
     marginTop: 40
   },
 
@@ -177,6 +190,22 @@ const componentStyles = {
     height: 22,
     fontSize: 14,
     fontFamily: 'Avenir-Light'
+  }
+};
+
+const componentDefaultStyle = {
+  chart: {
+    marginTop: 40
+  }
+};
+
+const componentCompactStyle = {
+  container: {
+    marginTop: 10
+  },
+
+  chart: {
+    marginTop: 10
   }
 };
 
