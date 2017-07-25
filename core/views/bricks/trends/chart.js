@@ -156,6 +156,10 @@ const componentStyles = {
     paddingLeft: 24
   },
 
+  container: {
+    paddingVertical: 10
+  },
+
   title: {
     height: 30,
     fontSize: 20,
