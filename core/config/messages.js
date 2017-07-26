@@ -30,11 +30,11 @@ export default {
      'Record current happiness': 'Сделать запись',
      'There is no data yet. Make your first record': 'Пока нет данных. Сделайте первую запись',
 
-     'Are you happy in this week?': 'Вы счастливы в эту неделю?',
+     'Are you happy in this week?': 'Вы счастливы на этой неделе?',
      'Are you happy in this month?': 'Вы счастливы в этом месяце?',
      'Are you happy in this quarter?': 'Вы счастливы в этом квартале?',
      'Are you happy in this year?': 'Вы счастливы в этом году?',
-     'Are you alive in this week?': 'Вы живете в эту неделю?',
+     'Are you alive in this week?': 'Вы живете на этой неделе?',
      'Are you alive in this month?': 'Вы живете в этом месяце?',
      'Are you alive in this quarter?': 'Вы живете в этом квартале?',
      'Are you alive in this year?': 'Вы живете в этом году?',
