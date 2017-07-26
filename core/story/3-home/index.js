@@ -19,7 +19,7 @@ import get from 'lodash/get';
 class Scene extends Component {
 
   static navigationOptions = ({navigation}) => ({
-    title: 'Happiness trends',
+    title: app.t('Happiness trends'),
     drawerIcon: ({tintColor, focused}) => (
       <IonicIcons
         name={focused ? 'ios-home' : 'ios-home-outline'}

@@ -11,7 +11,7 @@ import Item from './item';
 class Scene extends Component {
 
   static navigationOptions = ({navigation}) => ({
-    title: 'Latest records',
+    title: app.t('Latest records'),
     drawerIcon: ({tintColor, focused}) => (
       <IonicIcons
         name={focused ? 'ios-list-box' : 'ios-list-box-outline'}
@@ -32,7 +32,9 @@ class Scene extends Component {
   componentDidMount() {
     if (!app.storage.get('learned.remove')) {
       app.storage.set('learned.remove', true).save();
-      app.notification.info('You can remove each record. Swipe it to the left');
+
+      const message = app.t('You can remove each record. Swipe it to the left');
+      app.notification.info(message);
     }
   }
 
@@ -59,8 +61,8 @@ class Scene extends Component {
       return (
         <View style={styles.middle}>
           <View style={styles.contentHorizontal}>
-            <Text style={[styles.textMedium, styles.textCenter]}>There is no data yet</Text>
-            <Text style={[styles.textMedium, styles.textCenter]}>Make your first record</Text>
+            <Text style={[styles.textMedium, styles.textCenter]}>{app.t('There is no data yet')}</Text>
+            <Text style={[styles.textMedium, styles.textCenter]}>{app.t('Make your first record')}</Text>
           </View>
         </View>
       );

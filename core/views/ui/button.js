@@ -24,9 +24,9 @@ class Button extends Component {
 
   render() {
     const {text, children, style, focusStyle, labelStyle} = this.props;
-    const runtimeStyle = [styles.button, style];
-    const runtimeFocusStyle = [styles.buttonFocus, focusStyle];
-    const runtimeLabelStyle = [styles.buttonLabel, labelStyle];
+    const runtimeStyle = resolveStyle(styles.button, style);
+    const runtimeFocusStyle = resolveStyle(styles.buttonFocus, focusStyle);
+    const runtimeLabelStyle = resolveStyle(styles.buttonLabel, labelStyle);
 
     if (this.state.waiting) {
       return (
@@ -39,7 +39,7 @@ class Button extends Component {
         <TouchableHighlight
           onPress={this.onPress}
           style={runtimeStyle}
-          underlayColor={resolveStyle(runtimeFocusStyle).backgroundColor}>
+          underlayColor={runtimeFocusStyle.backgroundColor}>
           {text ? <Text style={runtimeLabelStyle}>{text.toUpperCase()}</Text> : children}
         </TouchableHighlight>
       );

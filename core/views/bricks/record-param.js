@@ -16,35 +16,35 @@ class Brick extends Component {
     const options = [
       {
         value: 2,
-        label: 'Yes',
+        label: app.t('Yes'),
         style: styles.buttonGreen,
         focusStyle: styles.buttonGreenFocus,
         labelStyle: styles.buttonGreenLabel
       },
       {
         value: 1,
-        label: 'Rather yes than no',
+        label: app.t('Rather yes than no'),
         style: styles.buttonBrilliantGreen,
         focusStyle: styles.buttonBrilliantGreenFocus,
         labelStyle: styles.buttonBrilliantGreenLabel
       },
       {
         value: 0,
-        label: 'Well...',
+        label: app.t('Well...'),
         style: styles.buttonYellow,
         focusStyle: styles.buttonYellowFocus,
         labelStyle: styles.buttonYellowLabel
       },
       {
         value: -1,
-        label: 'Rather no than yes',
+        label: app.t('Rather no than yes'),
         style: styles.buttonOrange,
         focusStyle: styles.buttonOrangeFocus,
         labelStyle: styles.buttonOrangeLabel
       },
       {
         value: -2,
-        label: 'No',
+        label: app.t('No'),
         style: styles.buttonRed,
         focusStyle: styles.buttonRedFocus,
         labelStyle: styles.buttonRedLabel
@@ -63,22 +63,32 @@ class Brick extends Component {
               const active = this.state.option
                 && option.value === this.state.option.value;
 
-              const buttonStyle = [sceneStyles.option, option.style,
-                active ? sceneStyles.optionActive : null];
-              const buttonFocusStyle = active
-                ? [option.focusStyle, sceneStyles.optionFocusActive] : option.focusStyle;
-              const buttonLabelStyle = active
-                ? [option.labelStyle, sceneStyles.optionLabelActive] : option.labelStyle;
+              const buttonStyle = [
+                sceneStyles.option,
+                option.style,
+                active ? styles.buttonActive : null
+              ];
+              
+              const buttonFocusStyle = [
+                option.focusStyle,
+                sceneStyles.optionFocus,
+                active ? styles.buttonActiveFocus : null
+              ];
+              
+              const buttonLabelStyle = [
+                option.labelStyle,
+                sceneStyles.optionLabel,
+                active ? styles.buttonActiveLabel : null
+              ];
 
               return (
                 <Button
                   key={option.value}
-                  style={[sceneStyles.option].concat(buttonStyle)}
+                  text={option.label.toUpperCase()}
+                  style={buttonStyle}
                   focusStyle={buttonFocusStyle}
                   labelStyle={buttonLabelStyle}
-                  onPress={() => this.onPick(option)}>
-                  <Text style={sceneStyles.optionLabel}>{option.label.toUpperCase()}</Text>
-                </Button>
+                  onPress={() => this.onPick(option)}/>
               );
             })}
           </View>
@@ -98,18 +108,8 @@ const sceneStyles = {
     marginVertical: 10
   },
 
-  optionActive: {
-    backgroundColor: '#ffffff',
-    borderColor: '#c5c4c4'
-  },
-
   optionLabel: {
-    height: 40,
-    width: 160,
-    lineHeight: 40,
-    textAlign: 'center',
-    fontSize: 11,
-    color: '#111111'
+    width: 160
   }
 };
 

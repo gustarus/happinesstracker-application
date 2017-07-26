@@ -6,13 +6,10 @@
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
     "ios": "react-native run-ios --simulator='iPhone 5s'",
     "android": "react-native run-android",
-    
     "log:ios": "react-native log-ios",
     "log:android": "react-native log-android",
-    
     "release:ios": "",
     "release:android": "cd android && ./gradlew assembleRelease && cd .. && open ./android/app/build/outputs/apk/",
-    
     "ios:iphone:5": "react-native run-ios --simulator='iPhone 5'",
     "ios:iphone:6": "react-native run-ios --simulator='iPhone 6'",
     "ios:iphone:6plus": "react-native run-ios --simulator='iPhone 6 Plus'",

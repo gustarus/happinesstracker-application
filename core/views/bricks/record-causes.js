@@ -24,11 +24,11 @@ class Brick extends Component {
               multiline={true}
               numberOfLines={6}
               value={this.state.causes}
-              placeholder='Tell about the reasons. Why are you in this state now?'
+              placeholder={app.t('Tell about the reasons. Why are you in this state now?')}
               onChangeText={this.onCausesChange.bind(this)}/>
           </View>
           <Button
-            text="Save and show the chart"
+            text={app.t('Save and show the chart')}
             style={[styles.buttonGreen, brickStyles.buttonDone]}
             focusStyle={styles.buttonGreenFocus}
             labelStyle={styles.buttonGreenLabel}

@@ -9,7 +9,7 @@ import {RecordParamBrick, NavigationButton} from '@core/views';
 class Scene extends Component {
 
   static navigationOptions = ({navigation}) => ({
-    title: 'Are you happy?',
+    title: app.t('Are you happy?'),
     headerStyle: styles.headerBlank,
     headerTitleStyle: styles.headerBlankTitle,
     headerLeft: (
@@ -21,7 +21,8 @@ class Scene extends Component {
   });
 
   componentDidMount() {
-    app.notification.info('Let\'s make your first record. Answer the next two questions');
+    const message = app.t('Let\'s make your first record. Answer the next two questions');
+    app.notification.info(message);
   }
 
   render() {

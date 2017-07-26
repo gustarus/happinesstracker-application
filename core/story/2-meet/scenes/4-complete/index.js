@@ -11,7 +11,7 @@ import moment from 'moment';
 class Scene extends Component {
 
   static navigationOptions = ({navigation, screenProps}) => ({
-    title: 'What happened?',
+    title: app.t('What happened?'),
     headerStyle: styles.headerBlank,
     headerTitleStyle: styles.headerBlankTitle,
     headerLeft: (
@@ -23,7 +23,8 @@ class Scene extends Component {
   });
 
   componentDidMount() {
-    app.notification.info('Now you can leave notes. What caused the state in which you are now?');
+    const message = app.t('Now you can leave notes. What caused the state in which you are now?');
+    app.notification.info(message);
   }
 
   render() {
@@ -38,8 +39,10 @@ class Scene extends Component {
   onCausesRecorded(causes) {
     const {happy, alive} = this.props.navigation.state.params;
     app.insertRecord(happy, alive, causes)
-      .then(() => app.notification.info('Mission complete! I\'ll be very happy if you find this app useful for yourself. Have a nice day!'))
-      .then(() => this.props.screenProps.onSuccess());
+      .then(() => {
+        const message = app.t('Mission complete! I\'ll be very happy if you find this app useful for yourself. Have a nice day!');
+        return app.notification.info(message);
+      }).then(() => this.props.screenProps.onSuccess());
   }
 }
 

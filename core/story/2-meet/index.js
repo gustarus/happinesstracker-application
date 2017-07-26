@@ -11,7 +11,7 @@ import {Button} from '@core/views';
 class Scene extends Component {
 
   static navigationOptions = () => ({
-    title: 'Hello!',
+    title: app.t('Hello!'),
     headerStyle: styles.headerBlank,
     headerTitleStyle: styles.headerBlankTitle
   });
@@ -21,13 +21,13 @@ class Scene extends Component {
       <View style={Object.assign({}, styles.scene, styles.middleVertical)}>
         <View style={styles.contentHorizontal}>
           <Button
-            text="Let's meet with the app"
+            text={app.t('Let\'s meet with the app')}
             style={[styles.buttonDefault, sceneStyles.button]}
             focusStyle={styles.buttonDefaultFocus}
             labelStyle={styles.buttonDefaultLabel}
             onPress={this.onTutorialPress.bind(this)}/>
           <Button
-            text='Start using the app'
+            text={app.t('Start using the app')}
             style={[styles.buttonDefault, sceneStyles.button]}
             focusStyle={styles.buttonDefaultFocus}
             labelStyle={styles.buttonDefaultLabel}

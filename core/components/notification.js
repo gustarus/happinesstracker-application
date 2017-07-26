@@ -42,7 +42,7 @@ export default class Notification extends Component {
     return new Promise((resolve, reject) => {
       return PushNotificationIOS.requestPermissions().then(state => {
         if (!state.alert && !state.sound && !state.badge) {
-          const message = 'Please, enable notifications for the app in settings';
+          const message = app.t('Please, enable notifications for the app in settings');
           this.info(message).then(reject);
         } else {
           resolve();

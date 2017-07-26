@@ -4,6 +4,24 @@ import Dimensions from 'Dimensions';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 import colors from './colors';
+import resolveStyle from './resolveStyle';
+
+const base = {
+  header: {
+    backgroundColor: '#F26B63',
+    height: 65
+  },
+
+  headerTitle: {
+    fontSize: 16,
+    fontFamily: 'Avenir-Light',
+    fontWeight: '400'
+  },
+
+  headerButton: {
+    color: '#ffffff'
+  }
+};
 
 export default {
   layout: {
@@ -58,54 +76,49 @@ export default {
     paddingVertical: 15
   },
 
-  header: {
+  header: resolveStyle(base.header, {
     backgroundColor: '#F26B63',
     height: 65
-  },
+  }),
 
-  headerTitle: {
-    fontSize: 16,
+  headerTitle: resolveStyle(base.headerTitle, {
     color: '#ffffff',
-    fontFamily: 'Avenir-Light',
-    fontWeight: '500',
     // Хак для ситуации, когда stack navigator инициализируется в modal:
     // при закрытии modal все заголовки и кнопки накладываются друг на друга,
     // поэтому я решил их просто перекрывать фоном текста таким же как и у шапки.
     // TODO исправить хак с фоном шапки stack navigator
     backgroundColor: '#F26B63'
-  },
+  }),
 
-  headerButton: {
+  headerButton: resolveStyle(base.headerButton, {
     color: '#ffffff'
-  },
+  }),
 
-  headerBlank: {
+  headerBlank: resolveStyle(base.header, {
     backgroundColor: '#ffffff'
-  },
+  }),
 
-  headerBlankTitle: {
+  headerBlankTitle: resolveStyle(base.headerTitle, {
     color: '#333333',
     backgroundColor: '#ffffff'
-  },
+  }),
 
-  headerBlankButton: {
+  headerBlankButton: resolveStyle(base.headerButton, {
     color: '#333333'
-  },
+  }),
 
-  headerGreen: {
+  headerGreen: resolveStyle(base.header, {
     backgroundColor: '#33CC66',
-  },
+  }),
 
-  headerGreenTitle: {
+  headerGreenTitle: resolveStyle(base.headerTitle, {
     color: '#333333',
-    fontFamily: 'Avenir-Light',
-    fontWeight: '500',
     backgroundColor: '#33CC66'
-  },
+  }),
 
-  headerGreenButton: {
+  headerGreenButton: resolveStyle(base.headerButton, {
     color: '#ffffff'
-  },
+  }),
 
   menuItem: {
     color: '#333333',
@@ -120,7 +133,7 @@ export default {
   menuItemLabel: {
     fontFamily: 'Avenir-Light',
     fontSize: 16,
-    fontWeight: '500'
+    fontWeight: '400'
   },
 
   menuItemLabelIcon: {
@@ -147,15 +160,29 @@ export default {
     borderWidth: 1
   },
 
+  buttonActive: {
+    backgroundColor: '#ffffff',
+    borderColor: '#c5c4c4'
+  },
+
+  buttonActiveFocus: {
+    backgroundColor: '#cccccc'
+  },
+
+  buttonActiveLabel: {
+    color: '#333333'
+  },
+
   buttonFocus: {
     backgroundColor: '#efefef'
   },
 
   buttonLabel: {
     fontFamily: 'Avenir-Light',
-    fontWeight: '500',
+    fontWeight: '400',
     fontSize: 12,
-    color: '#222222'
+    color: '#222222',
+    textAlign: 'center'
   },
 
   buttonDefault: {

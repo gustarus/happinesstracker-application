@@ -50,7 +50,7 @@ class Brick extends Component {
         <View style={brickStyles.chart}>
           <View style={styles.middle}>
             <Chart
-              title={title}
+              title={app.t(title)}
               groups={data}
               width={width}
               height={chartHeight}
@@ -60,7 +60,7 @@ class Brick extends Component {
         <View style={brickStyles.buttons}>
           <View style={styles.content}>
             <ButtonGroup
-              buttons={criterias.map(item => item.label.toUpperCase())}
+              buttons={criterias.map(item => app.t(item.label).toUpperCase())}
               selectedIndex={criteriaIndex}
               onPress={i => this.onCriteriaPick(criterias[i])}
               style={[brickStyles.buttonGroup, brickStyles.buttonGroupCriteria]}
@@ -68,7 +68,7 @@ class Brick extends Component {
               buttonFocusStyle={styles.buttonGrayFocus}
               buttonLabelStyle={styles.buttonGrayLabel}/>
             <ButtonGroup
-              buttons={periods.map(item => item.label.toUpperCase())}
+              buttons={periods.map(item => app.t(item.label).toUpperCase())}
               selectedIndex={periodIndex}
               onPress={i => this.onPeriodPick(periods[i])}
               style={[brickStyles.buttonGroup, brickStyles.buttonGroupPeriod]}
@@ -76,7 +76,7 @@ class Brick extends Component {
               buttonFocusStyle={styles.buttonGrayFocus}
               buttonLabelStyle={styles.buttonGrayLabel}/>
             <Button
-              text='Record current happiness'
+              text={app.t('Record current happiness')}
               style={Object.assign({}, styles.buttonDefault, brickStyles.recordButton)}
               focusStyle={styles.buttonDefaultFocus}
               labelStyle={styles.buttonDefaultLabel}

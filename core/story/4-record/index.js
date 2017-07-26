@@ -9,7 +9,7 @@ import {RecordParamBrick, NavigationButton} from '@core/views';
 class Scene extends Component {
 
   static navigationOptions = ({navigation, screenProps}) => ({
-    title: 'Are you happy?',
+    title: app.t('Are you happy?'),
     headerStyle: styles.header,
     headerTitleStyle: styles.headerTitle,
     headerLeft: (

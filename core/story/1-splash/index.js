@@ -1,7 +1,7 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {View, Modal, PushNotificationIOS, AppState} from 'react-native';
+import {View, Modal, PushNotificationIOS, AppState, Text} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {NavigationActions, DrawerNavigator, StackNavigator} from 'react-navigation';
 import {app} from '@core/instances';
@@ -30,7 +30,6 @@ class Scene extends Component {
       return app.storage.fetch();
     })();
 
-    const final = () => SplashScreen.hide();
     chain.then(() => {
       this.setState({loaded: true});
     }).then(() => {
@@ -43,7 +42,7 @@ class Scene extends Component {
     }).then(() => {
       app.notification.clean();
       app.notification.badge(0);
-    }).then(final).catch(final);
+    }).then(() => SplashScreen.hide());
   }
 
   componentWillUnmount() {
@@ -131,8 +130,9 @@ class Scene extends Component {
     this.onTutorialComplete();
 
     setTimeout(() => {
+      const message = app.t('One more tip: open the menu using the burger button');
       app.notification
-        .info('One more tip: open the menu using the burger button')
+        .info(message)
         .then(() => this.drawer._navigation.navigate('DrawerOpen'));
     }, 2000);
   }

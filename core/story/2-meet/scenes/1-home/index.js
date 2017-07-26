@@ -10,7 +10,7 @@ import {app} from '@core/instances';
 class Scene extends Component {
 
   static navigationOptions = ({navigation}) => ({
-    title: 'Your weekly story',
+    title: app.t('Your weekly story'),
     headerStyle: styles.headerBlank,
     headerTitleStyle: styles.headerBlankTitle,
     headerLeft: (
@@ -22,7 +22,8 @@ class Scene extends Component {
   });
 
   componentDidMount() {
-    app.notification.info('Let\'s meet with the home screen. It is  filled with demo data. Try to use filters, then click "Record current happiness"');
+    const message = app.t('Let\'s meet with the home screen. It is  filled with demo data. Try to use filters, then click "Record current happiness"');
+    app.notification.info(message);
   }
 
   render() {

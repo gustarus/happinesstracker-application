@@ -16,6 +16,8 @@ class Item extends Component {
   render() {
     const {index, data} = this.props;
     const {happy, alive, timestamp, causes} = data;
+    const than = moment(timestamp);
+    
     const runtimeStyle = index % 2 === 0
       ? componentStyles.even : componentStyles.odd;
 
@@ -32,7 +34,7 @@ class Item extends Component {
     if (causes) {
       notes = (
         <View style={[componentStyles.causes, runtimeStyle]}>
-          <Text style={componentStyles.causesLabel}>Why it happened?</Text>
+          <Text style={componentStyles.causesLabel}>{app.t('Why it happened?')}</Text>
           <Text style={componentStyles.causesValue}>{causes}</Text>
         </View>
       );
@@ -44,17 +46,17 @@ class Item extends Component {
           <View style={componentStyles.content}>
             <View style={componentStyles.timestamp}>
               <View style={componentStyles.recordTimestampContent}>
-                <Text style={componentStyles.timestampValue}>{moment(timestamp).format('D MMM').toUpperCase()}</Text>
-                <Text style={componentStyles.timestampValue}>{moment(timestamp).format('HH:mm').toUpperCase()}</Text>
+                <Text style={componentStyles.timestampValue}>{than.format(`D MMM`).toUpperCase()}</Text>
+                <Text style={componentStyles.timestampValue}>{than.format('HH:mm')}</Text>
               </View>
             </View>
             <View style={componentStyles.properties}>
               <View style={componentStyles.property}>
-                <Text style={componentStyles.propertyLabel}>Happy?</Text>
+                <Text style={componentStyles.propertyLabel}>{app.t('Happy?')}</Text>
                 <View style={componentStyles.propertySlices}>{this.renderStack(happy)}</View>
               </View>
               <View style={componentStyles.property}>
-                <Text style={componentStyles.propertyLabel}>Alive?</Text>
+                <Text style={componentStyles.propertyLabel}>{app.t('Alive?')}</Text>
                 <View style={componentStyles.propertySlices}>{this.renderStack(alive)}</View>
               </View>
             </View>
@@ -131,7 +133,6 @@ const componentStyles = {
   },
 
   propertyLabel: {
-    width: 70,
     fontSize: 16,
     fontFamily: 'Avenir-Light'
   },

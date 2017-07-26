@@ -3,6 +3,7 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import moment from 'moment';
+import {app} from '@core/instances';
 import {colorsForValues, styles} from '@core/theme';
 
 import Svg,{
@@ -108,7 +109,7 @@ class Chart extends Component {
                  fontSize={componentStyles.message.fontSize}
                  fontFamily={componentStyles.message.fontFamily}
                  textAnchor='middle'>
-          There is no data yet. Make your first record
+          {app.t('There is no data yet. Make your first record')}
         </SvgText>
       )
     }

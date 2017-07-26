@@ -17,7 +17,7 @@ class Scene extends Component {
   };
 
   static navigationOptions = ({navigation}) => ({
-    title: 'Setup reminders',
+    title: app.t('Setup reminders'),
     drawerIcon: ({tintColor, focused}) => (
       <IonicIcons
         name={focused ? 'ios-alarm' : 'ios-alarm-outline'}
@@ -63,30 +63,28 @@ class Scene extends Component {
         <ScrollView style={sceneStyles.scroll}>
           <View style={sceneStyles.firstBrick}>
             <Text style={[styles.contentHorizontal, styles.textMedium]}>
-              You can setup reminders.
-              At the specified time, the application will remind you that you need to make a record.
+              {app.t('You can setup reminders. At the specified time, the application will remind you that you need to make a record.')}
             </Text>
             <Tumbler
-              label='Enable reminders'
+              label={app.t('Enable')}
               style={sceneStyles.mainTumbler}
               enabled={enabled}
               onChange={this.onEnabledChange.bind(this)}/>
           </View>
           <View style={[sceneStyles.brick, runtimeStyle]}>
             <Text style={[styles.contentHorizontal, styles.textMedium]}>
-              We can notify you within one hour.
-              Example: you turned on the notification at 12:00.
-              If you made a record at 11:31 or at 12:29, the notification scheduled at 12:00 will not come to you.
-              Otherwise you'll receive the notification at 12:30.
+              {app.t('We can notify you within one hour. Example: you turned on the notification at 12:00. If you made a record at 11:31 or at 12:29, the notification scheduled at 12:00 will not come to you. Otherwise you\'ll receive the notification at 12:30.')}
             </Text>
             <Tumbler
-              label='Intelligence reminders'
+              label={app.t('Intelligence reminders')}
               style={sceneStyles.mainTumbler}
               enabled={intelligence}
               onChange={this.onIntelligenceChange.bind(this)}/>
           </View>
           <View style={[sceneStyles.brick, runtimeStyle]}>
-            <Text style={[styles.contentHorizontal, styles.textMedium]}>When you want to receive push reminders?</Text>
+            <Text style={[styles.contentHorizontal, styles.textMedium]}>
+              {app.t('When you want to receive push reminders?')}
+            </Text>
             <View style={sceneStyles.reminders}>
               {reminders.map((reminder, index) => (
                 <Tumbler

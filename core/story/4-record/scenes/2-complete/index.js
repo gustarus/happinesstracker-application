@@ -11,7 +11,7 @@ import moment from 'moment';
 class Scene extends Component {
 
   static navigationOptions = ({navigation, screenProps}) => ({
-    title: 'What happened?',
+    title: app.t('What happened?'),
     headerStyle: styles.header,
     headerTitleStyle: styles.headerTitle,
     gesturesEnabled: false,
