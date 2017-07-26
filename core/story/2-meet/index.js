@@ -11,7 +11,7 @@ import {Button} from '@core/views';
 class Scene extends Component {
 
   static navigationOptions = () => ({
-    title: app.t('Hello!'),
+    title: app.t('Happiness tracker'),
     headerStyle: styles.headerBlank,
     headerTitleStyle: styles.headerBlankTitle
   });

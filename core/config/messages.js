@@ -25,7 +25,7 @@ export default {
      'Now you can leave notes. What caused the state in which you are now?': 'Здесь вы можете оставить свои заметки. Что вызвало то состояние, в котором вы сейчас находитесь?',
      'Mission complete! I\'ll be very happy if you find this app useful for yourself. Have a nice day!': 'Миссия завершена! Я буду очень рад, если вы найдете полезным для себя это приложение. Хорошего дня!',
      'You can remove each record. Swipe it to the left': 'Вы можете удалить каждую запись. Смахните ее влево',
-     'Let\'s meet with the app': 'Как с этим работать?',
+     'Let\'s meet with the app': 'Что умеет это приложение?',
      'Start using the app': 'Начать пользоваться',
      'Record current happiness': 'Сделать запись',
      'There is no data yet. Make your first record': 'Пока нет данных. Сделайте первую запись',
