@@ -28,9 +28,9 @@ class Scene extends Component {
             onPress={this.onTutorialPress.bind(this)}/>
           <Button
             text={app.t('Start using the app')}
-            style={[styles.buttonDefault, sceneStyles.button]}
-            focusStyle={styles.buttonDefaultFocus}
-            labelStyle={styles.buttonDefaultLabel}
+            style={[styles.buttonGray, sceneStyles.button]}
+            focusStyle={styles.buttonGrayFocus}
+            labelStyle={styles.buttonGrayLabel}
             onPress={this.onSkipPress.bind(this)}/>
         </View>
       </View>
