@@ -1,4 +1,4 @@
 # Happiness tracker app
-**This app is unavailable in app store**
+**This app is unavailable in app store**.
 
-[See the demo](https://www.youtube.com/embed/adN2BipCr-o).
+Example of react native app fully supported by ios. [See the demo](https://www.youtube.com/embed/adN2BipCr-o).
